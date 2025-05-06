@@ -21,9 +21,9 @@ class ApiClient {
     }
   }
 
-  Future<Response> post(String endPoint, {Map<String, dynamic>? params}) async {
+  Future<Response> post(String endPoint, {Map<String, dynamic>? data}) async {
     try {
-      return await _dio.post(endPoint, queryParameters: params);
+      return await _dio.post(endPoint, data: data);
     } on DioException {
       rethrow;
     } catch (err) {

@@ -14,6 +14,8 @@ dependencies:
   get_it: ^7.6.4        
   injectable: ^2.1.0 
   dio: ^5.8.0+1
+  flutter_dotenv: ^5.2.1
+  flutter_markdown: ^0.7.7
 
 dev_dependencies:
   flutter_test:
@@ -21,4 +23,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
+  assets:
+    - assets/images/
+    - .env
   uses-material-design: true
