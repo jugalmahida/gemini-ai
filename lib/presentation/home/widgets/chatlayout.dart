@@ -29,7 +29,6 @@ Widget buildChatLayot({required AIModel? data}) {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  // Use Markdown widget instead of Text
                   Markdown(
                     data: responseText,
                     shrinkWrap: true,
