@@ -1,5 +1,5 @@
-import 'package:gemini/domain/entities/ai_model.dart';
+import 'package:gemini/domain/entities/message.dart';
 
 abstract class AiRepository {
-  Future<AIModel?> askAI(String query);
+  Future<Message>? askAI(String query);
 }

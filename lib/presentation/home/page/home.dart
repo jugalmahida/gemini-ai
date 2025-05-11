@@ -45,11 +45,12 @@ class _HomeState extends State<Home> {
               ),
             AskAiLoaded() => buildMainBottomLayot(
                 centeredContent: buildChatLayot(
-                  data: state.data,
+                  data: state.messages,
                 ),
                 controller: _controller,
                 context: context,
               ),
+              _ => SizedBox.shrink()
           };
         },
       ),

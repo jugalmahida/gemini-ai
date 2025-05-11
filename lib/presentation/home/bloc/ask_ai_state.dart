@@ -1,28 +1,32 @@
 part of 'ask_ai_bloc.dart';
 
-sealed class AskAiState extends Equatable {
-  const AskAiState();
+abstract class AskAiState extends Equatable {
+  final List<Message> messages;
+
+  const AskAiState({this.messages = const []});
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [messages];
 }
 
-final class AskAiInitial extends AskAiState {}
+class AskAiInitial extends AskAiState {
+  const AskAiInitial() : super(messages: const []);
+}
 
-final class AskAiLoading extends AskAiState {}
+class AskAiLoading extends AskAiState {
+  const AskAiLoading({required super.messages});
+}
 
-final class AskAiLoaded extends AskAiState {
-  final AIModel? data;
-  const AskAiLoaded(this.data);
+class AskAiLoaded extends AskAiState {
+  const AskAiLoaded({required super.messages});
+}
+
+class AskAiError extends AskAiState {
+  final String error;
+
+  const AskAiError({required this.error, required super.messages});
+
   @override
-  List<Object> get props => [data ?? {}]; // Added props override
+  List<Object?> get props => [error, messages];
 }
 
-final class AskAiError extends AskAiState {
-  final String message; // Added error message field
-
-  const AskAiError(this.message); // Added const constructor
-
-  @override
-  List<Object> get props => [message]; // Added props override
-}
