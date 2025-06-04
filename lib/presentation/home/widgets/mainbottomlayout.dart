@@ -13,45 +13,50 @@ Widget buildMainBottomLayot({
       child: Column(
         children: [
           centeredContent,
-          TextField(
-            controller: controller,
-            decoration: const InputDecoration(border: OutlineInputBorder()),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            width: double.maxFinite,
-            child: ElevatedButton(
-              onPressed: () {
-                final String query = controller.text.trim();
-                if (query.isNotEmpty) {
-                  context.read<AskAiBloc>().add(AskAIQuery(query));
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        "Please write query",
-                      ),
+          Row(
+            children: [
+              Flexible(
+                child: TextField(
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
-                  );
-                }
-                controller.clear();
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                backgroundColor: Colors.blueAccent,
               ),
-              child: const Text(
-                "Ask",
-                style: TextStyle(
+              SizedBox(
+                width: 10,
+              ),
+              IconButton(
+                iconSize: 30,
+                icon: Icon(
+                  Icons.send,
                   color: Colors.white,
-                  fontSize: 18,
+                ),
+                onPressed: () {
+                  final String query = controller.text.trim();
+                  if (query.isNotEmpty) {
+                    context.read<AskAiBloc>().add(AskAIQuery(query));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          "Please write query",
+                        ),
+                      ),
+                    );
+                  }
+                  controller.clear();
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  backgroundColor: Colors.blueAccent,
                 ),
               ),
-            ),
+            ],
           ),
         ],
       ),
